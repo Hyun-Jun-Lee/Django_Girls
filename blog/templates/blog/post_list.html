@@ -6,6 +6,7 @@
         <a href="{% url 'post_detail' pk=post.pk %}"><h1>{{ post.title }}</h1></a>
         <p>{{ post.created_at }}</p>
         <p>{{ post.text }}</p>
+        <a href="{% url 'post_detail' pk=post.pk %}"><p>Comments : {{ post.approved_comments.count }}</p></a>
     {% endfor %}
 
 {% endblock %}

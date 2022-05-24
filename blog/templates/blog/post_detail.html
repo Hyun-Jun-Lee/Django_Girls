@@ -14,8 +14,11 @@
         <h1>{{ post.title }}</h1>
         <p>{{ post.text }}</p>
     </div>
+    <a class='btn btn-default' href="{% url 'add_comment' post.pk %}">Add Comment</a>
     {% if post.comments.all %}
         {% for comment in post.comments.all %}
+            <a href='{% url "comment_remove" pk=post.pk %}'><span class='glyphicon glyphicon-remove'></span></a>
+            <a href='{% url "comment_approve" pk=post.pk %}'><span class='glyphicon glyphicon-ok'></span></a>
             <p>{{ comment.created_at }}</p>
             <strong>{{ comment.author }}</strong>
             <p>{{ comment.text }}</p>
