@@ -70,10 +70,12 @@ def add_comment_to_post(request, pk):
 
 def comment_approve(request,pk):
     comment = get_object_or_404(Comment, pk=pk)
+    print(comment)
     comment.approve()
-    return redirect('post_detail', pk=comment.post.pk)
+    return redirect('post_list')
 
 def comment_remove(request, pk):
     comment = get_object_or_404(Comment, pk=pk)
-    comment.delte()
+    print(comment)
+    comment.delete()
     return redirect('post_detail',pk=comment.post.pk)
