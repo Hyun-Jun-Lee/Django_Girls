@@ -1,0 +1,27 @@
+{% extends 'blog/base.html' %}
+
+{% block content %}
+    <div class='post'>
+        {% if post.published_at %}
+            <div class='date'>
+                {{ post.published_at }}
+            </div>
+        {% else %}
+            <a class='btn btn-default' href='{% url "post_publish" pk=post.pk %}'>Publish</a>
+        {% endif %}
+        <a class="btn btn-default" href="{% url 'post_edit' pk=post.pk %}"><span class="glyphicon glyphicon-pencil"></span></a>
+        <a class="btn btn-default" href="{% url 'post_remove' pk=post.pk %}"><span class="glyphicon glyphicon-remove"></span></a>
+        <h1>{{ post.title }}</h1>
+        <p>{{ post.text }}</p>
+    </div>
+    {% if post.comments.all %}
+        {% for comment in post.comments.all %}
+            <p>{{ comment.created_at }}</p>
+            <strong>{{ comment.author }}</strong>
+            <p>{{ comment.text }}</p>
+        {% endfor %}
+    {% else %}
+        <p>No commnet here</p>
+    {% endif %}
+{% endblock content %}
+
